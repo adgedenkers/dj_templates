@@ -5,16 +5,19 @@ import sys
 app_name = sys.argv[1]
 config_name = app_name + '.apps.' + app_name.capitalize() + 'Config'
 
-print(app_name)
-print(config_name)
+print("Adding App Named:", app_name)
+print("The Config is Listed as:", config_name)
+
+search_text = 'INSTALLED_APPS = [\n'
+replace_text = 'INSTALLED_APPS = [\n    "{}",\n'.format(config_name)
 
 # Open a file
 with open('django_app/settings.py', 'r') as f:
-    contents = f.read()
-
-# Search and replace 
-contents = re.sub(r'INSTALLED_APPS = [\n', 'INSTALLED_APPS = [\n    "{}",'.format(config_name), contents)
+    data =f.read()
+    data = data.replace(search_text, replace_text)
 
 # Write the new content to the file
 with open('django_app/settings.py', 'w') as f:
-    f.write(contents)
+    f.write(data)
+
+print("Added to `settings.py` file.")

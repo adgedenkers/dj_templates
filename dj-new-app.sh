@@ -15,3 +15,4 @@ cd $1
 curl -O https://raw.githubusercontent.com/adgedenkers/dj_templates/main/app/templates/base.html
 cd ../../..
 python dj-add-installed-app.py $1
+python dj-add-app-urls.py $1
